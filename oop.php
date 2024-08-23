@@ -21,7 +21,7 @@ class Book {
         if ($this->availableCopies > 0) {
             $this->availableCopies--;
         } else {
-            echo "No copies available for " . $this->title . ".\n";
+            echo "No copies left for " . $this->title . ".\n";
         }
     }
 
@@ -41,25 +41,29 @@ class Member {
         return $this->name;
     }
 
-    public function borrowBook($book) {
+    public function borrowBook(Book $book) {
         $book->borrowBook();
     }
 
-    public function returnBook($book) {
+    public function returnBook(Book $book) {
         $book->returnBook();
     }
 }
 
+// Instantiate 2 books
 $book1 = new Book("The Great Gatsby", 5);
 $book2 = new Book("To Kill a Mockingbird", 3);
 
+// Instantiate 2 members
 $member1 = new Member("John Doe");
 $member2 = new Member("Jane Smith");
 
+// Members borrow books
 $member1->borrowBook($book1);
 $member2->borrowBook($book2);
 
-echo "Available Copies of '" . $book1->getTitle() . "': " . $book1->getAvailableCopies() . "\n";
-echo "Available Copies of '" . $book2->getTitle() . "': " . $book2->getAvailableCopies() . "\n";
+// Display the number of copies left
+echo "Remaining Copies of '" . $book1->getTitle() . "': " . $book1->getAvailableCopies() . "\n";
+echo "Remaining Copies of '" . $book2->getTitle() . "': " . $book2->getAvailableCopies() . "\n";
 
 ?>
